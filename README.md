@@ -73,3 +73,33 @@ Then to add a basic domain object and a REST API for manipulating it:
                 "value": 100
             }
         ]
+
+To add some basic authentication:
+
+    $ grails create-interceptor security
+    [... edit according to changeset ...]
+    $ grails create-controller user
+    [... edit according to changeset ...]
+    $ create-domain-class User
+    [... edit according to changeset ...]
+    [... add a UrlMapping for /login ...]
+    [... edit BootStrap and add a sample user ...]
+
+    To log in:
+
+    $ curl -XPOST -si http://localhost:8080/login?foo=bar \
+        -H Content-Type:application/json \
+        --data '{"email":"test@test.com","password":"password"}' | grep Set-Cookie
+    Set-Cookie: JSESSIONID=2398F3C4712C97773B9D9490EC3AD67A;path=/;HttpOnly
+
+    To use the authenticated login:
+
+    $ curl -s http://localhost:8080/frob \
+      --cookie JSESSIONID=265B97152BF47793ED9A00223DD12072 | jsonpp
+        [
+            {
+                "id": 2,
+                "name": "Foo",
+                "value": 100
+            }
+        ]
