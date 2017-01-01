@@ -18,3 +18,12 @@ Steps to get here:
     | Application created at /Users/mdriscoll/src/grails-sandbox
     $ grails run-app
     Grails application running at http://localhost:8080 in environment: development
+
+Then to switch out for postgres:
+
+    $ brew install postgres
+    $ createuser grails -d
+    $ createdb -U grails grails
+    (made the changes in this changeset)
+    $ grails compile
+    $ grails run-app
