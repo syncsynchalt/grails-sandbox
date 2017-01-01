@@ -1,0 +1,8 @@
+import grails.sandbox.Frob
+
+model {
+	Iterable<Frob> frobList
+}
+
+json tmpl.frob(frobList ?: [])
+

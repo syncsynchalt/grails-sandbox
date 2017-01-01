@@ -1,0 +1,7 @@
+import grails.sandbox.Frob
+
+model {
+	Frob frob
+}
+
+json g.render(frob)

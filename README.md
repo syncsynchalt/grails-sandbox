@@ -27,3 +27,49 @@ Then to switch out for postgres:
     (made the changes in this changeset)
     $ grails compile
     $ grails run-app
+
+Then to add a basic domain object and a REST API for manipulating it:
+
+    $ grails create-domain-class frob
+    [... edit the resulting class to add String name, Integer value ...]
+    ### generate the CRUD scaffolding for a Frob
+    $ grails generate-all frob
+    $ alias jsonpp='python -m json.tool'
+    $ curl -s -X POST http://localhost:8080/frob \
+      -H "Content-Type: application/json" \
+      --data '{"name":"Foo","value":100}' | jsonpp
+        {
+            "id": 1,
+            "name": "Foo",
+            "value": 100
+        }
+    $ curl -s -X POST http://localhost:8080/frob \
+      -H "Content-Type: application/json" \
+      --data '{"name":"Bar","value":200}' | jsonpp
+        {
+            "id": 2,
+            "name": "Bar",
+            "value": 200
+        }
+    $ curl -s http://localhost:8080/frob | jsonpp
+        [
+            {
+                "id": 1,
+                "name": "Foo",
+                "value": 100
+            },
+            {
+                "id": 2,
+                "name": "Bar",
+                "value": 200
+            }
+        ]
+    $ curl -XDELETE -s http://localhost:8080/frob/2
+    $ curl -s http://localhost:8080/frob | jsonpp
+        [
+            {
+                "id": 1,
+                "name": "Foo",
+                "value": 100
+            }
+        ]
