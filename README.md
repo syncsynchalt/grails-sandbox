@@ -19,7 +19,7 @@ Steps to get here:
     $ grails run-app
     Grails application running at http://localhost:8080 in environment: development
 
-Then to switch out for postgres:
+Then to switch out for postgres: [changeset](0fa590fdae54056ea98316f17d92ad1e650a328d)
 
     $ brew install postgres
     $ createuser grails -d
@@ -28,7 +28,7 @@ Then to switch out for postgres:
     $ grails compile
     $ grails run-app
 
-Then to add a basic domain object and a REST API for manipulating it:
+Then to add a basic domain object and a REST API for manipulating it: [changeset](409b703506f653fe54ae557c029dde7e1f58db09)
 
     $ grails create-domain-class frob
     [... edit the resulting class to add String name, Integer value ...]
@@ -74,7 +74,7 @@ Then to add a basic domain object and a REST API for manipulating it:
             }
         ]
 
-To add some basic authentication:
+To add some basic authentication: [changeset](c0b67e7f570dc27dd9c4e540f52bcc4ca5740995)
 
     $ grails create-interceptor security
     [... edit according to changeset ...]
